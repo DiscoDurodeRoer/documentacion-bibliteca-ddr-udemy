@@ -1,0 +1,110 @@
+<ddr-base-test [title]="title" [description]="description">
+
+  <div content-component>
+
+    <h3>Ejemplo 1: array nulo</h3>
+    <div>
+      {{valoresNulo | join}}
+    </div>
+
+    <h3>Ejemplo 2: Valores separados con , (no indicando el parametro)</h3>
+    <div>
+      {{valores | join}}
+    </div>
+
+    <h3>Ejemplo 3: Valores separados con |</h3>
+    <div>
+      {{valores | join: '|'}}
+    </div>
+
+  </div>
+
+  <div documentation-component>
+
+    <h3>Como instalar</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+npm i ddr-join-pipe
+      </code>
+    </pre>
+
+    <h3>Como importar</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule &#125; from '@angular/core';
+
+// Modules
+import &#123; AppRoutingModule &#125; from './app-routing.module';
+import &#123; DdrJoinPipeModule &#125; from 'ddr-join-pipe';
+
+@NgModule(&#123;
+  declarations: [
+    AppComponent,
+    SampleDdrJoinPipeComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DdrJoinPipeModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+      </code>
+    </pre>
+
+    <h3>HTML</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+&lt;h3&gt;Ejemplo 1: array nulo&lt;/h3&gt;
+&lt;div&gt;
+  {{valoresNulo | join}}
+&lt;/div&gt;
+
+&lt;h3&gt;Ejemplo 2: Valores separados con , (no indicando el parametro)&lt;/h3&gt;
+&lt;div&gt;
+  {{valores | join}}
+&lt;/div&gt;
+
+&lt;h3&gt;Ejemplo 3: Valores separados con |&lt;/h3&gt;
+&lt;div&gt;
+  {{valores | join: '|'}}
+&lt;/div&gt;
+      </code>
+    </pre>
+
+    <h3>TS</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+export class DdrJoinPipeDemo &#123;
+
+  valoresNulo = null;
+  valores: string[];
+
+  constructor() &#123;
+    this.valores = [
+      "valor1",
+      "valor2",
+      "valor3",
+      "valor4",
+      "valor5"
+    ]
+
+  &#125;
+
+&#125; 
+      </code>
+    </pre>
+
+  </div>
+
+
+
+</ddr-base-test>

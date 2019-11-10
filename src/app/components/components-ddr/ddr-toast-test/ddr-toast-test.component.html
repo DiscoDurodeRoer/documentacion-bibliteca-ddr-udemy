@@ -1,0 +1,119 @@
+<ddr-base-test [title]="title" [description]="description">
+
+  <div content-component>
+
+    <!-- Esto debe ir en la raiz -->
+    <!-- <ddr-toast [timeOut]="3000"></ddr-toast> -->
+
+    <button class="btn btn-info" (click)="addInfo()">Mensaje de info</button>
+    <button class="btn btn-danger" (click)="addError()">Mensaje de error</button>
+    <button class="btn btn-warning" (click)="addWarning()">Mensaje de warning</button>
+    <button class="btn btn-success" (click)="addSuccess()">Mensaje de success</button>
+
+  </div>
+
+  <div documentation-component>
+
+    <h3>Como instalar</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+npm i ddr-toast
+      </code>
+    </pre>
+
+    <h3>Como importar</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule &#125; from '@angular/core';
+
+// Modules
+import &#123; DdrToastModule &#125; from 'ddr-toast';
+
+// Components
+import &#123; AppComponent &#125; from './app.component';
+import &#123; ExampleDdrToastComponent &#125; from './example/example-ddr-toast/example-ddr-toast.component';
+
+@NgModule(&#123;
+  declarations: [
+    AppComponent,
+    ExampleDdrToastComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DdrToastModule
+  ],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+      </code>
+    </pre>
+
+    <h3>HTML</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+&lt;ddr-toast [timeOut]=&quot;3000&quot;&gt;&lt;/ddr-toast&gt;
+
+&lt;button class=&quot;btn btn-info&quot; (click)=&quot;addInfo()&quot;&gt;Mensaje de info&lt;/button&gt;
+&lt;button class=&quot;btn btn-danger&quot; (click)=&quot;addError()&quot;&gt;Mensaje de error&lt;/button&gt;
+&lt;button class=&quot;btn btn-warning&quot; (click)=&quot;addWarning()&quot;&gt;Mensaje de warning&lt;/button&gt;
+&lt;button class=&quot;btn btn-success&quot; (click)=&quot;addSuccess()&quot;&gt;Mensaje de success&lt;/button&gt;
+      </code>
+    </pre>
+
+    <h3>TS</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+export class DdrToastDemo &#123;
+
+  constructor(private toastService: DdrToastService) &#123; &#125;
+
+  addInfo() &#123;
+    this.toastService.addInfoMessage("titulo", "contenido")
+  &#125;
+  addError() &#123;
+    this.toastService.addErrorMessage("titulo", "contenido")
+  &#125;
+  addWarning() &#123;
+    this.toastService.addWarningMessage("titulo", "contenido")
+  &#125;
+  addSuccess() &#123;
+    this.toastService.addSuccessMessage("titulo", "contenido")
+  &#125;
+
+&#125;
+      </code>
+    </pre>
+
+    <h3>Inputs</h3>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Input</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>timeOut</td>
+          <td>number</td>
+          <td>5000</td>
+          <td>Indica el tiempo en el que se muestra. Se indica en milisegundos.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+</ddr-base-test>

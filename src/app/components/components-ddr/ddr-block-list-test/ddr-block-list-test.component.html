@@ -1,0 +1,497 @@
+<ddr-base-test [title]="title" [description]="description">
+
+  <div content-component>
+    <ddr-block-list [blockItems]="blockItems" labelNoResults="No hay que mostrar" previousLabel="Previo"
+      nextLabel="Siguiente" pagination="5" (actionSelected)="getAction($event)" (itemSelected)="selectItem($event)">
+
+      <ng-template #templateInfoAdditional let-item="item">
+        <span>{{item.date | date: 'dd/MMM/yyyy'}}</span>
+      </ng-template>
+
+      <ng-template #templateHeader let-item="item">
+        <span>{{item.client}}</span>
+      </ng-template>
+
+      <ng-template #templateData let-item="item">
+
+        <ddr-block-data-item label="Estado" [value]="item.status">
+        </ddr-block-data-item>
+        <ddr-block-data-item label="Edad" [value]="item.age">
+        </ddr-block-data-item>
+
+      </ng-template>
+
+    </ddr-block-list>
+
+  </div>
+
+  <div documentation-component>
+
+    <h3>Como instalar</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+npm i ddr-block-list
+      </code>
+    </pre>
+
+    <h3>Como importar</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule, APP_INITIALIZER &#125; from '@angular/core';
+
+// Modulos
+import &#123; AppRoutingModule &#125; from './app-routing.module';
+import &#123; DdrBlockListModule &#125; from 'ddr-block-list';
+
+
+// Componentes
+import &#123; AppComponent &#125; from './app.component';
+import &#123; ExampleDdrBlockListComponent &#125; from './example/example-ddr-block-list/showcase-ddr-block-list.component';
+
+@NgModule(&#123;
+  declarations: [
+    AppComponent,
+    ExampleDdrBlockListComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DdrBlockListModule
+  ],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+        
+      </code>
+    </pre>
+
+    <h3>HTML</h3>
+
+    <pre>
+      <code class="language-markup" pCode ngNonBindable>
+&lt;ddr-block-list
+  [blockItems]=&quot;blockItems&quot;
+  labelNoResults=&quot;No hay que mostrar&quot;
+  previousLabel=&quot;Previo&quot;
+  nextLabel=&quot;Siguiente&quot;
+  pagination=&quot;5&quot;
+  (actionSelected)=&quot;getAction($event)&quot;
+  (itemSelected)=&quot;selectItem($event)&quot;&gt;
+
+  &lt;ng-template #templateInfoAdditional let-item=&quot;item&quot;&gt;
+    &lt;span&gt;&#123;&#123;item.date | date: 'dd/MMM/yyyy'&#125;&#125;&lt;/span&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template #templateHeader let-item=&quot;item&quot;&gt;
+    &lt;span&gt;&#123;&#123;item.client&#125;&#125;&lt;&lt;/span&gt;
+  &lt;/ng-template&gt;
+
+  &lt;ng-template #templateData let-item=&quot;item&quot;&gt;
+
+    &lt;ddr-block-data-item
+      label=&quot;Estado&quot;
+      [value]=&quot;item.status&quot;&gt;
+    &lt;/ddr-block-data-item&gt;
+    &lt;ddr-block-data-item
+      label=&quot;Edad&quot;
+      [value]=&quot;item.age&quot;&gt;
+    &lt;/ddr-block-data-item&gt;
+
+  &lt;/ng-template&gt;
+
+&lt;/ddr-block-list&gt;
+        
+      </code>
+    </pre>
+
+    <h3>TS</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+
+export class DdrBlockListDemo implements OnInit &#123;
+
+  public blockItems: DdrBlockItem[];
+
+  public CANCEL_APPOITMENT: string = "CANCEL_APPOITMENT"
+  public BEFORE_APPOINTMENTS: string = "BEFORE_APPOINTMENTS"
+
+  constructor() &#123;
+    this.blockItems = [];
+  &#125;
+
+  ngOnInit() &#123;
+
+    let items = [
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "complete",
+        "client": "Fernando",
+        "age": 29
+      &#125;,
+      &#123;
+        "date": "2019-10-10",
+        "status": "canceled",
+        "client": "Pepe",
+        "age": 17
+      &#125;,
+      &#123;
+        "date": "2019-09-09",
+        "status": "in course",
+        "client": "Manuel",
+        "age": 80
+      &#125;,
+      &#123;
+        "date": "2019-12-12",
+        "status": "unknown",
+        "client": "Fernando",
+        "age": 10
+      &#125;
+    ];
+
+    let actions: DdrAction[] = [
+      &#123;
+        'label': "Cancelar cita",
+        'value': this.CANCEL_APPOITMENT
+      &#125;,
+      &#123;
+        'label': "Ver anteriores citas",
+        "value": this.BEFORE_APPOINTMENTS,
+        "icon": "fa fa-file"
+      &#125;
+    ];
+
+    items.forEach(item => &#123;
+
+      let blockItem = new DdrBlockItem();
+
+      blockItem.item = item;
+
+      switch (item.status) &#123;
+        case "complete":
+          blockItem.borderColor = "green"
+          break;
+        case "canceled":
+          blockItem.borderColor = "red"
+          break;
+        case "in course":
+          blockItem.borderColor = "blue"
+          break;
+        case "unknown":
+          blockItem.borderColor = "grey"
+          break;
+      &#125;
+
+      blockItem.actions = item.age >= 18 ? actions : actions.filter((act, index) => index === 0);
+
+      this.blockItems.push(blockItem);
+
+    &#125;)
+
+
+  &#125;
+
+  getAction($event) &#123;
+    console.log($event);
+  &#125;
+
+  selectItem($event) &#123;
+    console.log($event);
+  &#125;
+
+&#125;
+      
+      </code>
+    </pre>
+
+    <h3>Inputs</h3>
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Input</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>blockItems</td>
+          <td>DdrBlockItem [ ]</td>
+          <td>[ ]</td>
+          <td>Items a mostrar.</td>
+        </tr>
+        <tr>
+          <td>labelNoResults</td>
+          <td>string</td>
+          <td>'No results'</td>
+          <td>Texto cuando no hay bloques.</td>
+        </tr>
+        <tr>
+          <td>showHeader</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Indica si queremos mostrar la cabecera.</td>
+        </tr>
+        <tr>
+          <td>showInfoAdditional</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Indica si queremos mostrar la información adicional.</td>
+        </tr>
+        <tr>
+          <td>showActions</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Indica si queremos mostrar las acciones.</td>
+        </tr>
+        <tr>
+          <td>showBorder</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>Indica si queremos mostrar el borde personalizado.</td>
+        </tr>
+        <tr>
+          <td>pagination</td>
+          <td>number</td>
+          <td>10</td>
+          <td>Indica el numero de bloques a mostrar.</td>
+        </tr>
+        <tr>
+          <td>previousLabel</td>
+          <td>string</td>
+          <td>'Previous'</td>
+          <td>Mensaje en el enlace de previo.</td>
+        </tr>
+        <tr>
+          <td>nextLabel</td>
+          <td>string</td>
+          <td>'Next'</td>
+          <td>Mensaje en el enlace de siguiente.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Outputs</h3>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Output</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>actionSelected</td>
+          <td>Evento cuando se selecciona una acción.</td>
+        </tr>
+        <tr>
+          <td>itemSelected</td>
+          <td>Evento cuando se selecciona un item.</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</ddr-base-test>

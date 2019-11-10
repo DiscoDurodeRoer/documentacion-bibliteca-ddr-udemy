@@ -1,0 +1,173 @@
+<ddr-base-test [title]="title" [description]="description">
+
+  <div content-component>
+    <div class="row">
+      <div class="col-4 mt-4">
+        <ddr-dropdown [valueSelect]="valueSelect" [options]="options" labelNoResults="No hay resultados que mostrar"
+          (select)="selectItem($event)">
+
+          <ng-template itemTemplate let-item="item">
+            {{item.label + " - " + item.value}}
+          </ng-template>
+
+        </ddr-dropdown>
+
+        <p>Este texto no deberia verse al abrir el dropdown</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div documentation-component>
+
+    <h3>Como instalar</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+npm i ddr-dropdown
+      </code>
+    </pre>
+
+    <h3>Como importar</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule &#125; from '@angular/core';
+
+// Modulos
+import &#123; AppRoutingModule &#125; from './app-routing.module';
+import &#123; DdrDropdownModule &#125; from 'ddr-dropdown';
+
+// Componentes
+import &#123; AppComponent &#125; from './app.component';
+import &#123; ShowcaseDdrDropdownComponent &#125; from './example/example-ddr-dropdown/example-ddr-dropdown.component';
+
+@NgModule(&#123;
+  declarations: [
+    AppComponent,
+    ExampleDdrDropdownComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DdrDropdownModule
+  ],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+      </code>
+    </pre>
+
+    <h3>HTML</h3>
+
+    <pre>
+      <code class="language-markup" pCode ngNonBindable>
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-4 mt-4&quot;&gt;
+      &lt;ddr-dropdown 
+          [valueSelect]=&quot;valueSelect&quot; 
+          [options]=&quot;options&quot;
+          labelNoResults=&quot;No hay resultados que mostrar&quot;
+          (select)=&quot;selectItem($event)&quot;&gt;
+
+          &lt;ng-template itemTemplate let-item=&quot;item&quot;&gt;
+            &#123;&#123;item.label + &quot; - &quot; + item.value&#125;&#125;
+          &lt;/ng-template&gt;
+
+      &lt;/ddr-dropdown&gt;
+
+      &lt;p&gt;Este texto no deberia verse al abrir el dropdown&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+      </code>
+    </pre>
+
+    <h3>TS</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+export class DdrDropdownDemo &#123;
+
+  options: DdrSelectItem[];
+  valueSelect: string;
+
+  constructor() &#123; &#125;
+
+  ngOnInit() &#123;
+
+    this.options = [
+      new DdrSelectItem('Label1', 'Value1'),
+      new DdrSelectItem('Label2', 'Value2'),
+      new DdrSelectItem('Label3', 'Value3'),
+      new DdrSelectItem('Label4', 'Value4')
+    ]
+
+    this.valueSelect = 'Value3';
+  &#125;
+
+  selectItem($event)&#123;
+    console.log($event);
+  &#125;
+
+&#125;
+      </code>
+    </pre>
+
+    <h3>Inputs</h3>
+    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Input</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>options</td>
+          <td>DdrSelectItem[ ]</td>
+          <td>[ ]</td>
+          <td>Las opciones a mostrar.</td>
+        </tr>
+        <tr>
+          <td>valueSelect</td>
+          <td>any</td>
+          <td>null</td>
+          <td>Indica el valor que se debe de precargar, si existe.</td>
+        </tr>
+        <tr>
+          <td>labelNoResults</td>
+          <td>string</td>
+          <td>'No results'</td>
+          <td>Muestra el texto cuando no hay opciones disponibles.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Outputs</h3>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Output</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>select</td>
+          <td>Evento cuando se clicka en una opción.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+</ddr-base-test>

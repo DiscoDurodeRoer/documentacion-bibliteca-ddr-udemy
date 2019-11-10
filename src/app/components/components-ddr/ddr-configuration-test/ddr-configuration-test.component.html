@@ -1,0 +1,164 @@
+<ddr-base-test [title]="title" [description]="description">
+
+  <div content-component>
+    <h3>Recoger valor simple</h3>
+    <p>
+      {{'variable1' | getDataConf}}
+    </p>
+
+
+    <h3>Recoger valor anidado</h3>
+    <p>
+      {{'variable3.subvariable1' | getDataConf}}
+    </p>
+
+    <h3>Mostrar valor segun el estado</h3>
+    <p *ngIf="'showElement' | getDataConf">
+      Me puedo mostrar
+    </p>
+
+    <h3>Mostrando varios valores</h3>
+    <p *ngFor="let item of ('values' | getDataConf)">
+      {{item.label + " - " + item.value}}
+    </p>
+
+    <p>Mira la consola de desarrollador para ver más</p>
+
+  </div>
+
+  <div documentation-component>
+
+    <h3>Como instalar</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+npm i ddr-configuration
+      </code>
+    </pre>
+
+    <h3>Como importar</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule, APP_INITIALIZER &#125; from '@angular/core';
+
+// Modulos
+import &#123; AppRoutingModule &#125; from './app-routing.module';
+import &#123; DdrConfigurationModule, DdrConfigurationService &#125; from 'ddr-configuration';
+
+// Componentes
+import &#123; AppComponent &#125; from './app.component';
+import &#123; ExampleDdrConfigurationComponent &#125; from './example/example-ddr-configuration/example-ddr-configuration.component';
+
+export function configFactory(provider: DdrConfigurationService) &#123;
+  return () => provider.getDataFromJSON('assets/data/data.json');
+&#125;
+
+@NgModule(&#123;
+  declarations: [
+    AppComponent,
+    ShowcaseDdrConfigurationComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DdrConfigurationModule
+  ],
+  providers: [
+    DdrConfigurationService,
+    &#123;
+      provide: APP_INITIALIZER,
+      useFactory: configFactory,
+      deps: [DdrConfigurationService],
+      multi: true
+    &#125;
+  ],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+      </code>
+    </pre>
+
+    <h3>HTML</h3>
+
+    <pre>
+      <code class="language-markup" pCode ngNonBindable>
+&lt;h3&gt;Recoger valor simple&lt;/h3&gt;
+&lt;p&gt;
+  &#123;&#123;'variable1' | getDataConf&#125;&#125;
+&lt;/p&gt;
+
+
+&lt;h3&gt;Recoger valor anidado&lt;/h3&gt;
+&lt;p&gt;
+  &#123;&#123;'variable3.subvariable1' | getDataConf&#125;&#125;
+&lt;/p&gt;
+
+&lt;h3&gt;Mostrar valor segun el estado&lt;/h3&gt;
+&lt;p *ngIf=&quot;'showElement' | getDataConf&quot;&gt;
+  Me puedo mostrar
+&lt;/p&gt;
+
+&lt;h3&gt;Mostrando varios valores&lt;/h3&gt;
+&lt;p *ngFor=&quot;let item of ('values' | getDataConf)&quot;&gt;
+  &#123;&#123;item.label + &quot; - &quot; + item.value&#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;Mira la consola de desarrollador para ver más&lt;/p&gt;
+        
+      </code>
+    </pre>
+
+    <h3>JSON</h3>
+
+    <pre>
+      <code class="language-javascript" pCode>
+&#123;
+  "variable1": "variable1",
+  "variable2": "variable2",
+  "showElement": false,
+  "variable3":&#123;
+      "subvariable1": "soy un valor anidado"
+  &#125;,
+  "values": [
+      &#123;
+          "label": "label1",
+          "value": "value1"
+      &#125;,
+      &#123;
+          "label": "label2",
+          "value": "value2"
+      &#125;,
+      &#123;
+          "label": "label3",
+          "value": "value3"
+      &#125;
+  ]
+&#125;
+      </code>
+    </pre>
+
+    <h3>TS</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+
+export class DdrConfigurationDemo &#123;
+
+  constructor(private config: DdrConfigurationService) &#123;
+    console.log(this.config.getAllData());
+    console.log(this.config.getData('variable2'))
+  &#125;
+
+
+&#125;
+      </code>
+    </pre>
+
+  </div>
+
+
+
+</ddr-base-test>

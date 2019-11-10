@@ -1,0 +1,194 @@
+<ddr-base-test [title]="title" [description]="description">
+
+  <div content-component>
+    <button class="btn btn-primary" (click)="openDetail()">Abrir detalle</button>
+
+    <ddr-detail *ngIf="showDetail" (close)="closeDetail()">
+
+      <h1 detail-title>Detalle ejemplo</h1>
+
+      <div class="row" detail-content>
+        <div class="col-12">
+          <form>
+
+            <div class="row form-group">
+              <div class="col-12">
+                <label for="field1">Campo 1</label>
+                <input type="text" class="form-control" id="field1">
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-12">
+                <label for="field2">Campo 2</label>
+                <input type="text" class="form-control" id="field2">
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-12">
+                <label for="field3">Campo 3</label>
+                <input type="text" class="form-control" id="field3">
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-12">
+                <button class="btn btn-block btn-primary" type="button">Guardar</button>
+              </div>
+            </div>
+
+
+
+          </form>
+        </div>
+      </div>
+
+    </ddr-detail>
+
+  </div>
+
+  <div documentation-component>
+
+    <h3>Como instalar</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+npm i ddr-detail
+      </code>
+    </pre>
+
+    <h3>Como importar</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+import &#123; BrowserAnimationsModule &#125; from '@angular/platform-browser/animations';
+
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule, APP_INITIALIZER &#125; from '@angular/core';
+
+// Modulos
+import &#123; AppRoutingModule &#125; from './app-routing.module';
+import &#123; DdrDetailModule &#125; from 'ddr-detail';
+
+// Componentes
+import &#123; AppComponent &#125; from './app.component';
+import &#123; ExampleDdrDetailComponent &#125; from './example/example-ddr-detail/example-ddr-detail.component';
+
+@NgModule(&#123;
+  declarations: [
+    AppComponent,
+    ShowcaseDdrDetailComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DdrDetailModule
+  ],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+        
+      </code>
+    </pre>
+
+    <h3>HTML</h3>
+
+    <pre>
+      <code class="language-markup" pCode ngNonBindable>
+&lt;button class=&quot;btn btn-primary&quot; (click)=&quot;openDetail()&quot;&gt;Abrir detalle&lt;/button&gt;
+
+&lt;ddr-detail *ngIf=&quot;showDetail&quot; (close)=&quot;closeDetail()&quot;&gt;
+
+  &lt;h1 detail-title&gt;Detalle ejemplo&lt;/h1&gt;
+
+  &lt;div class=&quot;row&quot; detail-content&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+      &lt;form&gt;
+
+        &lt;div class=&quot;row form-group&quot;&gt;
+          &lt;div class=&quot;col-12&quot;&gt;
+            &lt;label for=&quot;field1&quot;&gt;Campo 1&lt;/label&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;field1&quot;&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;row form-group&quot;&gt;
+          &lt;div class=&quot;col-12&quot;&gt;
+            &lt;label for=&quot;field2&quot;&gt;Campo 2&lt;/label&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;field2&quot;&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;row form-group&quot;&gt;
+          &lt;div class=&quot;col-12&quot;&gt;
+            &lt;label for=&quot;field3&quot;&gt;Campo 3&lt;/label&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;field3&quot;&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;row form-group&quot;&gt;
+          &lt;div class=&quot;col-12&quot;&gt;
+            &lt;button class=&quot;btn btn-block btn-primary&quot; type=&quot;button&quot;&gt;Guardar&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/ddr-detail&gt;
+        
+      </code>
+    </pre>
+
+    <h3>TS</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+
+export class DdrDetailDemo &#123;
+
+  public showDetail: boolean;
+
+  constructor() &#123;
+    this.showDetail = false;
+  &#125;
+
+  openDetail() &#123;
+    this.showDetail = true;
+  &#125;
+
+  closeDetail() &#123;
+    this.showDetail = false;
+  &#125;
+
+&#125;
+      </code>
+    </pre>
+
+
+    <h3>Outputs</h3>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Output</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>close</td>
+          <td>Evento cuando se cierra el detalle.</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</ddr-base-test>

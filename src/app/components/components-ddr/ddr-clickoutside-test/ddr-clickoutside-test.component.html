@@ -1,0 +1,207 @@
+<ddr-base-test [title]="title" [description]="description">
+
+    <div content-component>
+
+
+        <p>{{'Modo actual: ' +actualMode}}</p>
+
+        <button (click)="openEstandar()">Estandar</button>
+        <button (click)="openDelay()">Delay</button>
+        <button (click)="openDesactivated()">Desactivated</button>
+
+        <div *ngIf="showEstandar" ddrClickOutside (clickOutside)="clickOutside($event)" class="block">
+            <p>Click outside this div</p>
+        </div>
+
+        <div *ngIf="showDelay" ddrClickOutside [clickOutsideDelay]="5000" (clickOutside)="clickOutside($event)"
+            class="block">
+            <p>Click outside this div</p>
+        </div>
+
+        <div *ngIf="showDesactivated" ddrClickOutside [clickOutsideEnabled]="false"
+            (clickOutside)="clickOutside($event)" class="block">
+            <p>Click outside this div</p>
+        </div>
+
+
+    </div>
+
+    <div documentation-component>
+
+        <h3>Como instalar</h3>
+
+        <pre>
+        <code class="language-markup" pCode>
+  npm i ddr-clickoutside
+        </code>
+      </pre>
+
+        <h3>Como importar</h3>
+
+        <pre>
+        <code class="language-typescript" pCode>
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule &#125; from '@angular/core';
+
+// Modulos
+import &#123; AppRoutingModule &#125; from './app-routing.module';
+import &#123; DdrClickOutsideModule &#125; from 'ddr-click-outside';
+
+// Componentes
+import &#123; AppComponent &#125; from './app.component';
+import &#123; ExampleDdrClickOutsideComponent &#125; from './examples/example-ddr-click-outside/example-ddr-click-outside.component';
+
+@NgModule(&#123;
+    declarations: [
+    AppComponent,
+    ShowcaseDdrClickOutsideComponent
+    ],
+    imports: [
+    BrowserModule,
+    AppRoutingModule,
+    DdrClickOutsideModule
+    ],
+    bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+        </code>
+      </pre>
+
+        <h3>HTML</h3>
+
+        <pre>
+        <code class="language-markup" pCode>
+  
+&lt;p&gt;{{'Modo actual: ' +actualMode}}&lt;/p&gt;
+
+&lt;button (click)=&quot;openEstandar()&quot;&gt;Estandar&lt;/button&gt;
+&lt;button (click)=&quot;openDelay()&quot;&gt;Delay&lt;/button&gt;
+&lt;button (click)=&quot;openDesactivated()&quot;&gt;Desactivated&lt;/button&gt;
+
+&lt;div *ngIf=&quot;showEstandar&quot; ddrClickOutside (clickOutside)=&quot;clickOutside($event)&quot; class=&quot;block&quot;&gt;
+  &lt;p&gt;Click outside this div&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf=&quot;showDelay&quot; ddrClickOutside [clickOutsideDelay]=&quot;5000&quot; (clickOutside)=&quot;clickOutside($event)&quot; class=&quot;block&quot;&gt;
+  &lt;p&gt;Click outside this div&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf=&quot;showDesactivated&quot; ddrClickOutside [clickOutsideEnabled]=&quot;false&quot; (clickOutside)=&quot;clickOutside($event)&quot; class=&quot;block&quot;&gt;
+  &lt;p&gt;Click outside this div&lt;/p&gt;
+&lt;/div&gt;
+        </code>
+      </pre>
+
+        <h3>CSS</h3>
+
+        <pre>
+            <code class="language-css" pCode>
+.block&#123;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+&#125;
+            </code>
+        </pre>
+
+        <h3>TS</h3>
+
+        <pre>
+        <code class="language-typescript" pCode>
+export class DdrClickOutsideDemo &#123;
+
+    showEstandar: boolean;
+    showDelay: boolean;
+    showDesactivated: boolean;
+    actualMode: string;
+    
+    
+    constructor() &#123; 
+        this.showEstandar = true;
+        this.actualMode = 'estandar';
+    &#125;
+    
+    ngOnInit() &#123;
+    &#125;
+    
+    clickOutside($event) &#123;
+        console.log($event);
+    
+    &#125;
+    
+    openEstandar() &#123;
+        this.showEstandar = true;
+        this.showDelay = false;
+        this.showDesactivated = false;
+        this.actualMode = 'estandar';
+    &#125;
+    
+    openDelay() &#123;
+        this.showEstandar = false;
+        this.showDelay = true;
+        this.showDesactivated = false;
+        this.actualMode = 'delay';
+    &#125;
+    
+    openDesactivated() &#123;
+        this.showEstandar = false;
+        this.showDelay = false;
+        this.showDesactivated = true;
+        this.actualMode = 'desactivated';
+    &#125;
+    
+&#125;
+          
+        </code>
+      </pre>
+
+        <h3>Inputs</h3>
+       
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Input</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>clickOutsideEnabled</td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td>Indica si la directiva esta activada.</td>
+                </tr>
+                <tr>
+                    <td>clickOutsideDelay</td>
+                    <td>number</td>
+                    <td>5000</td>
+                    <td>Indica el retraso a la hora de mandar el evento.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Outputs</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Output</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>clickOutside</td>
+                    <td>Evento cuando se clicka fuera del elemento.</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+
+
+
+</ddr-base-test>

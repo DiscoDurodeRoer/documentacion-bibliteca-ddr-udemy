@@ -1,0 +1,20 @@
+<div class="container-fluid p-0 h-100">
+
+  <div class="row">
+    <div class="col-12">
+      <ddr-menu-top></ddr-menu-top>
+    </div>
+  </div>
+
+  <div class="row no-gutters h-100">
+    <div class="col-3">
+      <ddr-menu-components></ddr-menu-components>
+    </div>
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+<ddr-toast [timeOut]="3000"></ddr-toast>

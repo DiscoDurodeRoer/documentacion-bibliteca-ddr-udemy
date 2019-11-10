@@ -1,0 +1,100 @@
+<ddr-base-test [title]="title" [description]="description">
+
+  <div content-component>
+    <iframe src="http://discoduroderoer.es" ddrLoadIframe (loadIframe)="load()"></iframe>
+
+    <ddr-spinner></ddr-spinner>
+  </div>
+
+  <div documentation-component>
+
+    <h3>Como instalar</h3>
+
+    <pre>
+      <code class="language-markup" pCode>
+npm i ddr-load-iframe
+      </code>
+    </pre>
+
+    <h3>Como importar</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+// Angular
+import &#123; BrowserModule &#125; from '@angular/platform-browser';
+import &#123; NgModule &#125; from '@angular/core';
+
+// Modulos
+import &#123; AppRoutingModule &#125; from './app-routing.module';
+import &#123; DdrLoadIframeModule &#125; from 'ddr-load-iframe';
+
+// Componentes
+import &#123; AppComponent &#125; from './app.component';
+import &#123; ExampleDdrLoadIframeComponent &#125; from './example/example-ddr-load-iframe/showcase-ddr-load-iframe.component';
+
+
+@NgModule(&#123;
+  declarations: [
+    AppComponent,
+    ShowcaseDdrLoadIframeComponent
+  ],
+  imports: [
+    BrowserModule,
+    DdrLoadIframeModule
+  ],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+      </code>
+    </pre>
+
+    <h3>HTML</h3>
+
+    <pre>
+      <code class="language-markup" pCode ngNonBindable>
+&lt;iframe src=&quot;http://discoduroderoer.es&quot; ddrLoadIframe (loadIframe)=&quot;load()&quot;&gt;&lt;/iframe&gt;
+
+&lt;ddr-spinner&gt;&lt;/ddr-spinner&gt;
+      </code>
+    </pre>
+
+    <h3>TS</h3>
+
+    <pre>
+      <code class="language-typescript" pCode>
+export class DdrLoadIframeDemo &#123;
+
+  constructor(private ddrSpinner: DdrSpinnerService) &#123;
+    this.ddrSpinner.showSpinner();
+  &#125;
+
+  load() &#123;
+    console.log("Load iframe");
+    this.ddrSpinner.hideSpinner();
+  &#125;
+&#125;
+      </code>
+    </pre>
+
+    <h3>Outputs</h3>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Output</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>loadIframe</td>
+          <td>Evento cuando se carga el iframes.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+</ddr-base-test>

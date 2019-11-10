@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: 'college';
+    src: url('assets/fonts/college-block.regular.otf');
+}
+
+.font-college{
+    font-family: 'college';
+}
+
+.cursor-poiter {
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.font-size-20{
+    font-size: 20px;
+}
